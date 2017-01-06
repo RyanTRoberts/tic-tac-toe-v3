@@ -54,12 +54,12 @@ $('.box').on('mouseout', function(){ //when player mouse leaves a square
 $('.box').on('click', function(){     //when user clicks on square
 
 
-  if($('#player1').hasClass('active') == true){     //if player one is active
+  if($('#player1').hasClass('active') == true && $(this).hasClass('filled') == false){     //if player one is active
     $(this).addClass('box-filled-1 filled');    //add class filled-1
     turnControl('#player1', '#player2');    //switch turn from player one to player Two
     playerOne += ($('.box').index(this));   //add square index into playerOne move list
     moveCounter += 1;     //add 1 to move counter
-  } else {          //if player 2 is active
+  } else if($(this).hasClass('filled') == false){          //if player 2 is active
     $(this).addClass('box-filled-2 filled');       //add class box-filled-2
     turnControl('#player2', '#player1');        //switch turn from, player two to player one
     playerTwo += ($('.box').index(this));       //add square index into playerTwo move list
@@ -79,11 +79,13 @@ function gameOver(){
         hideAll();        //hide game board
         clear();          //clear all move records and game board
         finish('one')     //display winner screen, winner 1
+        $('p.message').replaceWith('<p class="message">Winner</p>')    //display display winner
       } else if ($.inArray(winner1, playerTwo) !== -1 && $.inArray(winner2, playerTwo) !== -1 && $.inArray(winner3, playerTwo) !== -1 ){
         hideAll();        //hide game board
         clear();          //clear all move records and game board
         finish('two')     //display winner screen, winner 2
-      } else if (moveCounter >= 9) {
+        $('p.message').replaceWith('<p class="message">Winner</p>')    //display display winner
+      } else if (moveCounter == 9) {
         hideAll();      //hide game board
         clear();        //clear all move records and game board
         finish('tie')   //display winner screen, its a tie
@@ -109,6 +111,7 @@ function hideAll(){
 
 //function to update the winning screen correctly
 function finish(winner){
+  $('#finish').removeClass('screen-win-one screen-win-two screen-win-tie');  
   $('#finish').addClass('screen-win-'+winner+'');
   $('#finish').show();
 }
