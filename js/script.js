@@ -85,7 +85,7 @@ function gameOver(){
         clear();          //clear all move records and game board
         finish('two')     //display winner screen, winner 2
         $('p.message').replaceWith('<p class="message">Winner</p>')    //display display winner
-      } else if (moveCounter == 9) {
+      } else if (moveCounter >= 10) {
         hideAll();      //hide game board
         clear();        //clear all move records and game board
         finish('tie')   //display winner screen, its a tie
@@ -111,7 +111,7 @@ function hideAll(){
 
 //function to update the winning screen correctly
 function finish(winner){
-  $('#finish').removeClass('screen-win-one screen-win-two screen-win-tie');  
+  $('#finish').removeClass('screen-win-one screen-win-two screen-win-tie');
   $('#finish').addClass('screen-win-'+winner+'');
   $('#finish').show();
 }
