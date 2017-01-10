@@ -59,11 +59,13 @@ $('.box').on('click', function(){     //when user clicks on square
     turnControl('#player1', '#player2');    //switch turn from player one to player Two
     playerOne += ($('.box').index(this));   //add square index into playerOne move list
     moveCounter += 1;     //add 1 to move counter
+    console.log(playerOne)
   } else if($(this).hasClass('filled') == false){          //if player 2 is active
     $(this).addClass('box-filled-2 filled');       //add class box-filled-2
     turnControl('#player2', '#player1');        //switch turn from, player two to player one
     playerTwo += ($('.box').index(this));       //add square index into playerTwo move list
     moveCounter += 1;         //add 1 to move counter
+    console.log(playerTwo)
   };
 
   gameOver()      //check if game is over
@@ -78,18 +80,18 @@ function gameOver(){
       if($.inArray(winner1, playerOne) !== -1 && $.inArray(winner2, playerOne) !== -1 && $.inArray(winner3, playerOne) !== -1 ){    //if playerOne move list contains winning moves 1, 2 & 3
         hideAll();        //hide game board
         clear();          //clear all move records and game board
-        finish('one')     //display winner screen, winner 1
-        $('p.message').replaceWith('<p class="message">Winner</p>')    //display display winner
+        finish('one');     //display winner screen, winner 1
+        $('p.message').replaceWith('<p class="message">Winner</p>');    //display display winner
       } else if ($.inArray(winner1, playerTwo) !== -1 && $.inArray(winner2, playerTwo) !== -1 && $.inArray(winner3, playerTwo) !== -1 ){
         hideAll();        //hide game board
         clear();          //clear all move records and game board
-        finish('two')     //display winner screen, winner 2
-        $('p.message').replaceWith('<p class="message">Winner</p>')    //display display winner
-      } else if (moveCounter >= 10) {
+        finish('two');     //display winner screen, winner 2
+        $('p.message').replaceWith('<p class="message">Winner</p>');    //display display winner
+      } else if (moveCounter >= 9) {
         hideAll();      //hide game board
         clear();        //clear all move records and game board
-        finish('tie')   //display winner screen, its a tie
-        $('p.message').replaceWith('<p class="message">It\'s a Tie</p>')    //display its a tie
+        finish('tie');   //display winner screen, its a tie
+        $('p.message').replaceWith('<p class="message">It\'s a Tie</p>');    //display its a tie
      }
     }
 };
