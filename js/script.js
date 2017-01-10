@@ -87,13 +87,14 @@ function gameOver(){
         clear();          //clear all move records and game board
         finish('two');     //display winner screen, winner 2
         $('p.message').replaceWith('<p class="message">Winner</p>');    //display display winner
-      } else if (moveCounter >= 9) {
-        hideAll();      //hide game board
-        clear();        //clear all move records and game board
-        finish('tie');   //display winner screen, its a tie
-        $('p.message').replaceWith('<p class="message">It\'s a Tie</p>');    //display its a tie
-     }
+      }
     }
+    if (moveCounter >= 9) {
+      hideAll();      //hide game board
+      clear();        //clear all move records and game board
+      finish('tie');   //display winner screen, its a tie
+      $('p.message').replaceWith('<p class="message">It\'s a Tie</p>');    //display its a tie
+   }
 };
 
 
